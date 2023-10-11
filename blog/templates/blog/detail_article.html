@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}Détails de l'Article - Cybersecurity Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <!-- Colonne pour les détails de l'article -->
+        <h1>{{ article.titre }}</h1>
+        <p>Publié par {{ article.auteur }} le {{ article.date_creation|date:"d/m/Y H:i" }}</p>
+        <hr>
+        <div class="card">
+            {% if article.image %}
+                <img src="{{ article.image.url }}" alt="{{ article.title }}">
+            {% endif %}
+            <div class="card-body">
+                <p class="card-text">{{ article.contenu }}</p>
+            </div>
+        </div>
+        <hr>
+        <h2>Commentaires</h2>
+        {% if commentaires %}
+        <ul class="list-group">
+            {% for commentaire in commentaires %}
+            <li class="list-group-item">
+                {{ commentaire.contenu }}
+            </li>
+                {% if user.is_authenticated and user == article.auteur %}
+                    <a href="{% url 'modifier_article' article.id %}" class="btn btn-warning">Modifier</a>
+                {% endif %}
+            {% endfor %}
+        </ul>
+        {% else %}
+        <p>Aucun commentaire n'a été publié pour cet article.</p>
+        {% endif %}
+        <hr>
+        <h3>Publier un Commentaire</h3>
+        <form method="post">
+            {% csrf_token %}
+            {{ formulaire_commentaire.as_p }}
+            <button type="submit" class="btn btn-primary">Publier le commentaire</button>
+        </form>
+    </div>
+    <div class="col-md-4">
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/istock-1127637966.jpg" class="card-img-top" alt="Publicité 1">
+                <div class="card-body">
+                    <h5 class="card-title">1. What Is a Hacker?</h5>
+                    <p class="card-text">Un pirate informatique est une personne ayant des compétences 
+                        avancées en informatique qui est habile à trouver des vulnérabilités dans les 
+                        logiciels et les systèmes informatiques.</p>
+                        <li class="nav-item">
+                            <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                       </li>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Publicité 2 -->
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/Cyb2.jpg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">2. What Is a Cybersecurity</h5>
+                    <p class="card-text">La cybersécurité englobe tous les moyens qui permettent d'assurer la 
+                        protection et l'intégrité des données, sensibles ou non, au sein d'une infrastructure numérique.</p>
+                    <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/Cyb1.jpeg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">What is the role of cybersecurity? </h5>
+                    <p class="card-text">La cybersécurité consiste à protéger les ordinateurs, les serveurs, les appareils 
+                        mobiles, les systèmes électroniques, les réseaux et les données contre les attaques malveillantes. 
+                        On l’appelle également sécurité informatique ou sécurité des systèmes d'information. .</p>
+                    <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                    </li>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/305579c_1648740692737-pns-4725615.jpg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">Who is concerned with cybersecurity?</h5>
+                    <p class="card-text">La cybersécurité concerne pratiquement tout le monde, car elle vise 
+                        à protéger les systèmes informatiques, les réseaux et les données contre les menaces en ligne.
+                        Voici quelques-uns des principaux groupes qui sont concernés par la cybersécurité :
+                        Les individus, Les entreprises, Les gouvernements, Les organisations à but non lucratif, Les
+                         prestataires de services en ligne, Les professionnels de la cybersécurité, Les consommateurs de technologie .
+                     </p>
+                     <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                   </li>
+                </div>
+            </div>
+        </div>
+        
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/istock-1127637966.jpg" class="card-img-top" alt="Publicité 1">
+                <div class="card-body">
+                    <h5 class="card-title">1. What Is a Hacker?</h5>
+                    <p class="card-text">Un pirate informatique est une personne ayant des compétences 
+                        avancées en informatique qui est habile à trouver des vulnérabilités dans les 
+                        logiciels et les systèmes informatiques.
+                    </p>
+                    <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                   </li>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Publicité 2 -->
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/Cyb2.jpg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">2. What Is a Cybersecurity</h5>
+                    <p class="card-text">La cybersécurité englobe tous les moyens qui permettent d'assurer la 
+                        protection et l'intégrité des données, sensibles ou non, au sein d'une infrastructure numérique.
+                    </p>
+                    <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                   </li>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/Cyb1.jpeg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">What is the role of cybersecurity? </h5>
+                    <p class="card-text">La cybersécurité consiste à protéger les ordinateurs, les serveurs, les appareils 
+                        mobiles, les systèmes électroniques, les réseaux et les données contre les attaques malveillantes. 
+                        On l’appelle également sécurité informatique ou sécurité des systèmes d'information. 
+                    </p>
+                    <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                   </li>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mt-3">
+            <div class="card">
+                <img src="media/305579c_1648740692737-pns-4725615.jpg" class="card-img-top" alt="Publicité 2">
+                <div class="card-body">
+                    <h5 class="card-title">Who is concerned with cybersecurity?</h5>
+                    <p class="card-text">La cybersécurité concerne pratiquement tout le monde, car elle vise 
+                        à protéger les systèmes informatiques, les réseaux et les données contre les menaces en ligne.
+                        Voici quelques-uns des principaux groupes qui sont concernés par la cybersécurité :
+                        Les individus, Les entreprises, Les gouvernements, Les organisations à but non lucratif, Les
+                         prestataires de services en ligne, Les professionnels de la cybersécurité, Les consommateurs de technologie .
+                     </p>
+                     <li class="nav-item">
+                        <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                   </li>
+                </div>
+            </div>
+        </div>
+        <!-- Colonne pour les publicités -->
+        <!-- Ajoutez ici votre contenu publicitaire, par exemple des bannières publicitaires ou du texte promotionnel -->
+    </div>
+</div>
+{% endblock %}

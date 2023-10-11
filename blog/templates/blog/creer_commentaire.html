@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Créer un Commentaire - Cybersecurity Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Créer un Commentaire</h1>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            {{ formulaire_commentaire.as_p }}
+            <button type="submit" class="btn btn-primary">Publier le commentaire</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

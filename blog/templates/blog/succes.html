@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block title %}Message envoyé avec succès{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Message envoyé avec succès</h1>
+        <p>Merci d'avoir contacté notre équipe. Nous vous répondrons dès que possible.</p>
+        <a href="{% url 'liste_articles' %}">Retour à l'accueil</a>
+    </div>
+{% endblock%}

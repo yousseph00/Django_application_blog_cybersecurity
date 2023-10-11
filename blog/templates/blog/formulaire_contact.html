@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Contactez-nous{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Contactez-nous</h1>
+    <form method="post" action="{% url 'formulaire_contact' %}">
+        {% csrf_token %}
+        {{ formulaire.as_p }}
+
+        <button type="submit">Envoyer</button>
+    </form>
+</div>
+{% endblock%}

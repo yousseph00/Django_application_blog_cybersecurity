@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}À propos de notre blog - Cybersecurity Blog{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <h1>À propos de notre blog en cybersécurité</h1>
+            <p>
+                Bienvenue sur notre blog en cybersécurité. Nous sommes dédiés à fournir les dernières informations,
+                conseils et astuces liés à la cybersécurité pour vous aider à rester en sécurité en ligne.
+            </p>
+            <h2> Pourquoi la Cyber Sécurité ?</h2>
+            <p>
+                Aujourd’hui, le paysage de la science des données évolue à une vitesse vertigineuse et la demande 
+                de compétences en cybersécurité continue de croître. Le principal défi des entreprises n’est plus 
+                simplement d’opérer une transformation digitale et de former son personnel à la Data, mais aussi 
+                et surtout de sécuriser ses données.
+            </p>
+            <!-- Ajoutez d'autres informations sur votre blog ici. -->
+        </div>
+        <div class="col-md-4">
+            <div class="container mt-3">
+                <div class="card">
+                    <img src="media/Cyb2.jpg" class="card-img-top" alt="Publicité 2">
+                    <div class="card-body">
+                        <h5 class="card-title">2. What Is a Cybersecurity</h5>
+                        <p class="card-text">La cybersécurité englobe tous les moyens qui permettent d'assurer la 
+                            protection et l'intégrité des données, sensibles ou non, au sein d'une infrastructure numérique.
+                        </p>
+                        <li class="nav-item">
+                            <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                       </li>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container mt-3">
+                <div class="card">
+                    <img src="media/Cyb1.jpeg" class="card-img-top" alt="Publicité 2">
+                    <div class="card-body">
+                        <h5 class="card-title">What is the role of cybersecurity? </h5>
+                        <p class="card-text">La cybersécurité consiste à protéger les ordinateurs, les serveurs, les appareils 
+                            mobiles, les systèmes électroniques, les réseaux et les données contre les attaques malveillantes. 
+                            On l’appelle également sécurité informatique ou sécurité des systèmes d'information. 
+                        </p>
+                        <li class="nav-item">
+                            <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                       </li>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="container mt-3">
+                <div class="card">
+                    <img src="media/305579c_1648740692737-pns-4725615.jpg" class="card-img-top" alt="Publicité 2">
+                    <div class="card-body">
+                        <h5 class="card-title">Who is concerned with cybersecurity?</h5>
+                        <p class="card-text">La cybersécurité concerne pratiquement tout le monde, car elle vise 
+                            à protéger les systèmes informatiques, les réseaux et les données contre les menaces en ligne.
+                            Voici quelques-uns des principaux groupes qui sont concernés par la cybersécurité :
+                            Les individus, Les entreprises, Les gouvernements, Les organisations à but non lucratif, Les
+                             prestataires de services en ligne, Les professionnels de la cybersécurité, Les consommateurs de technologie .
+                         </p>
+                         <li class="nav-item">
+                            <a href="{% url 'formulaire_contact' %}" class="btn btn-success">contact</a>
+                       </li>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+

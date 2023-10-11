@@ -1,0 +1,5 @@
+body {
+    background: rgb(204, 188, 188);
+    background-size: cover; /* Ajuste l'image pour couvrir tout le fond */
+    background-repeat: no-repeat; /* Évite la répétition de l'image */
+}

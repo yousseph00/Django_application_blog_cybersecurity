@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Supprimer le Commentaire - Cybersecurity Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Supprimer le Commentaire</h1>
+        <hr>
+        <p>Êtes-vous sûr de vouloir supprimer ce commentaire ?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Confirmer la suppression</button>
+            <a href="{% url 'detail_article' article.id %}" class="btn btn-secondary">Annuler</a>
+        </form>
+    </div>
+</div>
+{% endblock %}

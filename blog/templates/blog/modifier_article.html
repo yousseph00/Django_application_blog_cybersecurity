@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Modifier l'Article - Cybersecurity Blog{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1>Modifier l'Article</h1>
+        <hr>
+        <form method="post">
+            {% csrf_token %}
+            {{ formulaire_article.as_p }}
+            <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
