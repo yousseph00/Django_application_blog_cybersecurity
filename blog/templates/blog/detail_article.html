@@ -20,18 +20,22 @@
         <hr>
         <h2>Commentaires</h2>
         {% if commentaires %}
-        <ul class="list-group">
-            {% for commentaire in commentaires %}
-            <li class="list-group-item">
-                {{ commentaire.contenu }}
-            </li>
-                {% if user.is_authenticated and user == article.auteur %}
-                    <a href="{% url 'modifier_article' article.id %}" class="btn btn-warning">Modifier</a>
-                {% endif %}
-            {% endfor %}
-        </ul>
+            <ul class="list-group">
+                {% for commentaire in commentaires %}
+                    <li class="list-group-item">
+                        {% if commentaire.auteur %}
+                            {{ commentaire.auteur.username }} : {{ commentaire.contenu }}
+                        {% else %}
+                            Inconnu : {{ commentaire.contenu }}
+                        {% endif %}
+                    </li>
+                    {% if user.is_authenticated and user == article.auteur %}
+                        <a href="{% url 'modifier_article' article.id %}" class="btn btn-warning">Modifier</a>
+                    {% endif %}
+                {% endfor %}
+            </ul>
         {% else %}
-        <p>Aucun commentaire n'a été publié pour cet article.</p>
+            <p>Aucun commentaire n'a été publié pour cet article.</p>
         {% endif %}
         <hr>
         <h3>Publier un Commentaire</h3>

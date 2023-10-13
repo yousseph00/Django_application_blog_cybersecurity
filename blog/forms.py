@@ -16,11 +16,21 @@ class ArticleForm(forms.ModelForm):
 class CommentaireForm(forms.ModelForm):
     class Meta:
         model = Commentaire
-        fields = ['contenu']
+        fields = ['contenu']  # Ne pas inclure le champ 'auteur' ici
 
-    def __init__(self, *args, **kwargs):
+    def __init__(self, user, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['contenu'].widget.attrs.update({'class': 'form-control', 'placeholder': 'Laissez un commentaire...'})
+        self.user = user  # Stocker l'utilisateur dans le formulaire
+
+    def save(self, commit=True):
+        # Créer une instance de Commentaire en attachant l'utilisateur actuel
+        instance = super(CommentaireForm, self).save(commit=False)
+        instance.auteur = self.user  # Affecter l'utilisateur actuel comme auteur
+        if commit:
+            instance.save()
+        return instance  
+        
 
 class ContactForm(forms.Form):
     nom = forms.CharField(max_length=100, required=True)

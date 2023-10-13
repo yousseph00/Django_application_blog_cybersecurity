@@ -1,3 +1,4 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.generic.edit import CreateView, DeleteView
 
@@ -14,15 +15,17 @@ def liste_articles(request):
 def detail_article(request, article_id):
     article = get_object_or_404(Article, pk=article_id)
     commentaires = Commentaire.objects.filter(article=article)
+    
     if request.method == 'POST':
-        formulaire_commentaire = CommentaireForm(request.POST)
+        formulaire_commentaire = CommentaireForm(user=request.user, data=request.POST)
         if formulaire_commentaire.is_valid():
-            nouveau_commentaire = formulaire_commentaire.save(commit=False)
-            nouveau_commentaire.article = article
-            nouveau_commentaire.save()
+            commentaire = formulaire_commentaire.save(commit=False)
+            commentaire.article = article
+            commentaire.save()
             return redirect('detail_article', article_id=article_id)
     else:
-        formulaire_commentaire = CommentaireForm()
+        formulaire_commentaire = CommentaireForm(user=request.user)
+
     return render(request, 'blog/detail_article.html', {'article': article, 'commentaires': commentaires, 'formulaire_commentaire': formulaire_commentaire})
 
 @login_required
@@ -63,17 +66,15 @@ class CreerCommentaireView(CreateView):
 
 @login_required
 def create_comment(request, article_id):
-    # Assuming you have retrieved the article and user appropriately
-    article = get_object_or_404(Article, pk=article_id)
-    user = request.user
-
-    # Create a new comment and set the author
-    new_comment = Commentaire(contenu="Your comment text", auteur=user, article=article)
-
-    # Save the comment to the database
-    new_comment.save()
+    if request.method == 'POST':
+        article = Article.objects.get(pk=article_id)
+        content = request.POST.get('content')
+        # Créez un nouveau commentaire en utilisant le formulaire CommentaireForm
+        new_comment = Commentaire(article=article, contenu=content, auteur=request.user)
+        new_comment.save()
 
     # Redirect or return a response as needed
+    return redirect('creer_commentaire')
 
 class SupprimerCommentaireView(DeleteView):
     model = Commentaire
